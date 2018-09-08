@@ -1,0 +1,301 @@
+
+% ===============================================
+% MATH 521: Computational Algebra         Fall 2018
+% hw_template.tex
+% ===============================================
+
+% -------------------------------------------------------------------------
+% You can ignore this preamble. Go on
+% down to the section that says "START HERE" 
+% -------------------------------------------------------------------------
+
+\documentclass{article}
+
+
+
+\usepackage[document]{ragged2e}
+
+\usepackage{pgf,tikz,pgfplots}
+\pgfplotsset{compat=1.14}
+\usepackage{mathrsfs}
+\usetikzlibrary{arrows}
+
+\usepackage[margin=1.75in]{geometry} % Please keep the margins at 1.5 so that there is space for grader comments.
+\usepackage{amsmath,amsthm,amssymb,hyperref}
+
+\usepackage{concmath}
+\usepackage[T1]{fontenc}
+
+\usepackage{graphicx}
+
+\newcommand{\R}{\mathbf{R}}  
+\newcommand{\Z}{\mathbf{Z}}
+\newcommand{\N}{\mathbf{N}}
+\newcommand{\Q}{\mathbf{Q}}
+
+\newenvironment{theorem}[2][Theorem]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{lemma}[2][Lemma]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{claim}[2][Claim]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{problem}[2][Problem]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{proposition}[2][Proposition]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{corollary}[2][Corollary]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+
+\newenvironment{solution}{\begin{proof}[Solution]}{\end{proof}}
+
+\begin{document}
+
+\large % please keep the text at this size for ease of reading.
+\linespread{1} % please keep 1.5 line spacing so that there is space for grader comments.
+
+% ------------------------------------------ %
+%                 START HERE             %
+% ------------------------------------------ %
+
+{\Large Homework 1 % Replace with appropriate number -- keep this THE SAME even when you revise and resubmit.
+\hfill  Math 521, Computational Algebra}
+
+\begin{center}
+{\Large Kelly Brower} % Replace "Author's Name" with your name
+\end{center}
+\vspace{0.05in}
+
+% -----------------------------------------------------
+% The following two environments (claim, proof) are
+% where you will enter the statement and proof of your
+% first problem for this assignment.
+%
+% In the theorem environment, you can replace the word
+% "theorem" in the \begin and \end commands with
+% "theorem", "proposition", "lemma", etc., depending on
+% what you are proving. 
+% -----------------------------------------------------
+
+\begin{problem}{(2a)}
+Consider the polynomial $g(x,y) = x^2y + y^2x \in \mathbb{F}_2[x,y]$ Show every $(x,y) \in \mathbb{F}^2_2$, and explain why this does not contradict Proposition 5.
+\end{problem}
+
+\begin{solution}
+If $g(x,y) = x^2y + y^2x$ then \newline  $g(0,0) = 0^2\cdot0 + 0^2\cdot0 = 0\cdot0 + 0\cdot0 = 0 + 0= 0$,\newline  $g(0,1) = 0^2\cdot1 + 1^2\cdot0 = 0\cdot1 + 1\cdot0 = 0 + 0= 0$, \newline  $g(1,0) = 1^2\cdot0 + 1^2\cdot0 = 1\cdot0 + 1\cdot0 = 0 + 0= 0$, \newline  $g(1,1) = 1^2\cdot1 + 1^2\cdot1 = 1\cdot1 + 1\cdot1 = 1 + 1= 0$. \newline This does not contradict Propostion 5  because $\mathbb{F}_2$ is finite.
+\end{solution}
+
+\begin{problem}{(2b)}
+Find a nonzero polynomial in $\mathbb{F}_2[x,y,z]$ which vanishes at every point of $\mathbb{F}^3_2$. Try to find one involving all three variables.
+\end{problem}
+
+\begin{solution}
+I claim that $f = xyz(1+xyz)\in \mathbb{F}_2[x,y,z]$ vanishes $\forall (x,y,z) \in \mathbb{F}^3_2$. Since $x,y,z \in \mathbb{F}_2$, $xyz = 0$ or $xyz = 1$. If $xyz = 0$, then $0(1+0)=0(1) = 0$ and if $xyz = 1$, then $1(1+1) = 1(0) = 0$. Note that $f \not= 0 \in \mathbb{F}_2[x,y,z]$ but $f(x,y,z) = 0 \ \forall (x,y,z) \in \mathbb{F}^3_2$.
+\end{solution}
+
+\begin{problem}{(6a)}
+Inside of $\mathbb{C}^n$, we have the subset $\mathbb{Z}^n$, which consists of all points with integer coordinates. Prove that if $f \in \mathbb{C}[x_1, \dots , x_n]$ vanishes at every point of $\mathbb{Z}^n$, then $f$ is the zero polynomial. Hint: Adapt the proof of Proposition 5.
+\end{problem}
+
+\begin{proof}
+We proceed to show by induction on the number of variables $n$ in $\mathbb{C}[x_1,\dots,x_n]$ that $f$ vanishing $\forall  (z_1,\dots, z_n) \in \mathbb{Z}^n$ implies $f = 0 \in \mathbb{C}[x_1, \dots, x_n]$ \newline Base case: $n=1$ \newline Assume $f \in \mathbb{C}[x]$ vanishes $\forall z \in \mathbb{Z}$.  By Lagrange's Theorem, since $\mathbb{Z}$ is infinite, there are infinitely many roots $f(z) = 0$  and it must be that $f = 0  \in \mathbb{C}[x]$. \newline Induction hypothesis: Suppose $f \in \mathbb{C}[x_1,\dots,x_{n-1}]$ vanishing $\forall (z_1, \dots, z_{n-1}) \in \mathbb{Z}^{n-1}$ implies $f = 0 \in \mathbb{C}[x_1,\dots,x_{n-1}]$.\newline Induction Step: We construct a function $f \in \mathbb{C}[x_1,\dots,x_n]$ as in the proof for Proposition 5.\newline Let $f$ be given by
+$$f = \sum^N_{i=0}g_i(x_1, \dots, x_{n-1})x^i_n,$$
+and fix $(z_1,\dots,z_{n-1}) \in \mathbb{Z}^{n-1}$. This gives a polynomial $f(z_1,\dots,z_{n-1},x_n) \in \mathbb{C}[x_n]$. By hypothesis, $f$ vanishes $\forall z_n \in \mathbb{Z}$ and by our base case of $n=1$, $f = 0 \in \mathbb{C}[x_n]$. But this implies that $g_i(z_1, \dots, z_{n-1}) = 0$ for all $i$. Since the choice of $(z_1, \dots, z_{n-1})$ was arbitrary, our induction hypothesis says that $g_i(x_1, \dots, x_{n-1}) \in \mathbb{C}[x_1,\dots,x_{n-1}]$ gives the zero polynomial. This forces $f = 0  \in \mathbb{C}[x_1, \dots, x_n]$.  
+\end{proof}
+\begin{problem}{(2)}
+In $\mathbb{R}^2$, sketch $\mathbb{V}(y^2 - x(x - 1)(x - 2))$. Hint: For which $x$’s is it possible to solve for $y$?
+How many $y$’s correspond to each $x$? What symmetry does the curve have?
+\end{problem}
+\begin{solution}
+Note that the variety has easy solutions at $x = 0, 1, 2$.  Since $y$ is squared, each $x$ corresponds to two $y$'s.  The curve is symmetric about the $x$-axis. It's image is produced on the below. \newline
+$\mathbb{V}(y^2 - x(x - 1)(x - 2))$ \newline
+\includegraphics[width=\textwidth]{Untitled.pdf}
+\end{solution}
+\newpage
+\begin{problem}{(3)}
+In the plane $\mathbb{R}^2$, draw a picture to illustrate
+$\mathbb{V}(x^2 +y^2 -4)\cap\mathbb{V}(xy-1)=\mathbb{V}(x^2 +y^2 -4,xy-1)$,
+and determine the points of intersection. Note that this is a special case of Lemma 2.
+\end{problem}
+\begin{solution}
+Note that the set of solutions to the intersection of the varieties is simply generated by solving for the points for which in each variety vanish. Thus, $\mathbb{V}(x^2 +y^2 -4)\cap\mathbb{V}(xy-1)=\mathbb{V}(x^2 +y^2 -4,xy-1) = \{(a_1,a_2)\in \mathbb{R}^2 \mid x^2 +y^2 - 4=0 \ \land \ xy - 1 = 0\}$ This variety has four points, for which each corresponds to the intersection of the circle with radius 4 and the curve of the function $y=\frac{1}{x}$. \newline
+$\mathbb{V}(x^2 +y^2 -4)\cap\mathbb{V}(xy-1)=\mathbb{V}(x^2 +y^2 -4,xy-1)$ \newline
+\includegraphics[width=\textwidth]{ss2_3.pdf}
+\end{solution}
+\newpage
+\begin{problem}{(4a)}
+$\mathbb{V}(x^2+y^2+z^2-1)$ \newline
+\includegraphics[width=\textwidth]{ss26a.pdf}
+\end{problem}
+\begin{problem}{(4b)}
+$\mathbb{V}(x^2+y^2-1)$ \newline
+\includegraphics[width=\textwidth]{ss26b.pdf}
+\end{problem}
+\begin{problem}{(4c)}
+$\mathbb{V}(x+2,y-1.5,z)$ \newline
+is the intersection of three planes corresponding to $(-2,1.5,0)\in\mathbb{R}^3$.
+\end{problem}
+\newpage
+\begin{problem}{(4d)}
+$\mathbb{V}(xz^2-xy)$  which by Lemma 2 is the union of the $yz-plane$ and the parabolic sheet formed by $z^2 = y$.
+\end{problem}
+\begin{problem}{(4e)}
+$\mathbb{V}(x^4-zx, x^3 - yx)$. By lemma 2 this is  $\mathbb{V}(z-x^3,y-x^2) \cup \mathbb{V}(x)$ which is the twisted cubic unioned with the yz plane.
+\end{problem}
+\begin{problem}{(4f)}
+$\mathbb{V}(x^2+y^2+z^2-1, x^2+y^2+(z-1)^2-1)$ is the intersection of the spheres below. This intersection is defined by the set of points $\{(x,y,\frac{1}{2})\in \mathbb{R}^3 \mid x^2 + y^2 = \frac{3}{4}\}$.
+\end{problem}
+\begin{problem}{(5)}
+Use the proof of Lemma 2 to sketch $\mathbb{V}((x-2)(x^2 -y),y(x^2 -y),(z+1)(x^2 -y)) \ \textnormal{in} \ \mathbb{R}^3$. Hint: This is the union of which two varieties?
+\end{problem}
+\begin{solution}
+By $\emph{Lemma 2}$, $\mathbb{V}((x-2)(x^2 -y),y(x^2 -y),(z+1)(x^2 -y)) = \mathbb{V}(x-2,y,z+1) \cup \mathbb{V}(x^2 -y)$.  But this is the set of points $\{(x,y,z)\in\mathbb{R}^3 \mid (x,y,z) = (2,0,-1) \lor (x,x^2,z) \ \forall x,z\in \mathbb{R}\}$.
+\end{solution}
+
+\begin{problem}{(6a)}
+Let $k$ be an infinite field. We proceed by induction on the number of variables $n$ to show that  $(a_1,\dots,a_n)\in k^n$ is an affine variety.
+\end{problem}
+\begin{proof}
+Base case: $n=1$ \newline
+Let $(x-a) \in k[x]$ Then $(a)\in k$ is the solution to $x-a=0$ and thus $(a) \in k$ is the affine variety defined by $\mathbb{V}(x-a)$. \newline
+Induction Hypothesis: Suppose $\mathbb{V}((x_1-a_1),\dots,(x_{n-1}-a_{n-1}))$ produces the affine variety $(a_1,\dots,a_{n-1})\in k^{n-1}$. \newline
+Induction Step: Observe that our hypothesis produces the affine variety $(a_1,\dots,a_{n-1})\in k^{n-1}$ and our base case produces the affine variety $(a_n) \in k$. By Lemma 2, $\mathbb{V}((x_1-a_1),\dots,(x_{n-1}-a_{n-1})) \cap (x_n-a_n) = \mathbb{V}((x_1 - a_1),\dots,(x_n-a_n)) = (a_1,\dots,a_n) \in k^n$ and the result follows.
+\end{proof}
+\begin{problem}{(6b)}
+Prove that every finite subset of $k^n$ is an affine variety.
+\end{problem}
+\begin{proof}
+We proceed to show by induction on $n$, the number of unions, that the union of finite affine varieties is a finite subset of $k^s$ and forms an affine variety.\newline
+Base case: $n=1$\newline
+Suppose $V^i$ for $i \in \{1,\dots,n\}$ are subsets of $k^s$ such that $V^i=\mathbb{V}^i(f_1,\dots,f_s)$.
+Since Lemma 2 provides a basis for the union of two affine varieties, we call it to show that $V^1 \cup V^2= \mathbb{V}((f_i\cdot g_j)$ for $0<i\leq s$ and $0<j\leq s$ which is a finite subset of $k^s$ since there are s variables and the union of finite sets is finite. Thus, our base case holds.\newline
+Induction Hypothesis: Suppose the union over $n-1$ finite subsets of $k^s$ form an affine variety that is itself a subset of $k^s$.\newline
+Induction Step: By our induction hypothesis and an application of our base case, the following holds true: 
+$$\bigcup^{n-1}_{i=1}V^i \cup V^n = \mathbb{V}(f')$$
+Where $f'$ is the set of combiniations of products from each variety in the union. This, of course, is a finite subset of $k^s$, so the result follows.
+\end{proof}
+\begin{problem}{(7a)}
+Using $r^2 = x^2 + y^2$, $x = r cos(\theta)$ and $y = r sin(\theta)$, show that the four-leaved rose is contained in the affine variety $V((x^2 +y^2)^3 -4x^2y^2)$. Hint: Use an identity for $sin(2\theta)$.
+\end{problem}
+\begin{proof}
+We proceed to show that $\{(r,\theta) \mid r = sin(2\theta)\} \subseteq \mathbb{V}((x^2+y^2)^3-4x^2y^2))$. Observe the following string of equivalences: \newline
+$$r = sin(2\theta)$$
+$$r^2 = sin^2(2\theta)$$ 
+$$r^2 - sin^2(2\theta) = 0$$
+$$r^4(r^2 - sin^2(2\theta)) = r^4 \cdot 0$$ 
+$$r^6 - r^4sin^2(2\theta) = 0$$
+$$(r^2)^3 - 4(r^4(cos^2(\theta)sin^2(\theta))=0$$ 
+$$(r^2)^3 - 4((rcos(\theta))^2(rsin(\theta))^2)=0$$
+$$(x^2 + y^2)^3 - 4x^2y^2 = 0$$
+Which of course means that $\{(r,\theta) \mid r = sin(2\theta)\} \subseteq \mathbb{V}((x^2+y^2)^3-4x^2y^2))$.
+\end{proof}
+\begin{problem}{(7b)}
+Now argue carefully that $\mathbb{V}((x^2 + y^2)^3 - 4x^2y^2)$ is contained in the four-leaved rose.
+This is trickier than it seems since $r$ can be negative in $r = sin(2\theta)$.
+\end{problem}
+\begin{proof}
+Since we wish to show that $\mathbb{V}(x^2 + y^2) - 4x^2y^2)\subseteq \{(r,\theta) \mid r = sin(2\theta)\}$, we proceed in a similar fashion as above, noting the subtle difference in the reverse direction: \newline
+$$(x^2 + y^2)^3 - 4x^2y^2 = 0$$  
+$$(r^2)^3 - 4((rcos(\theta))^2(rsin(\theta))^2)=0$$
+$$(r^2)^3 - (r^2\cdot2cos(\theta)sin(\theta))^2=0$$
+$$r^6 - (r^2sin(2\theta))^2 = 0$$
+$$r^6 - r^4sin^2(2\theta) = 0$$
+$${r^4}(r^2 - sin^2(2\theta) = 0$$
+$$\not{r^4}(r^2 - sin^2(2\theta) = 0$$
+Noting that since $(0,0)$ is an obvious solution to $r = sin(2\theta)$, we allow division of $r^4$ and consider solutions that do not involve $r = 0$. 
+$$r^2 - sin^2(2\theta) = 0$$ 
+$$r^2 = sin^2(2\theta)$$
+Now again we must mention that solving for the square root of each side of the above equation requires a little delicacy. Observe that
+$$r = sin(2\theta) \ or \ r = -sin(2\theta)$$
+However, by use of the fact that $sine$ is an odd function, we recall that $-sin(\theta) = sin(-\theta)$. So
+$$r = sin(2\theta) \ or \ r = sin(-2\theta)$$
+But this simply corresponds to the image of the flower being produce counterclockwise(clockwise), respectively. And finally we conclude that $\mathbb{V}(x^2 + y^2) - 4x^2y^2)\subseteq \{(r,\theta) \mid r = sin(2\theta)\}$.
+\end{proof}
+\begin{problem}{(8)}
+It can take some work to show that something is not an affine variety. For example, consider the set
+$$X = \{(x, x) \mid x \in \mathbb{R}, x \neq 1\}\subseteq\mathbb{R}^2$$...
+\end{problem}
+\begin{proof}
+We proceed to show that $X$ is not a variety by way of contradiction. \newline
+Suppose $X = \mathbb{V}(f_1,\dots,f_s)$. Let $f_i\in \mathbb{R}[x,y]$ vanishes on X.  Let $g_i(t) = f_i(t,t) \in \mathbb{R}[t]$. Since $f_i$ vanishes in $X$, $g_i(t) = 0 \ \forall t \in \mathbb{R}$.  But by proposition 5 we know this implies $g(t) = 0  \in \mathbb{R}[t]$. So $g(1) = f(1,1) = 0$. But this contradicts the definition of $X$.  The result follows.
+\end{proof}
+\begin{problem}{(9)}
+Let $R=\{(x,y)\in\mathbb{R}^2 \mid y>0\}$ be the upper half plane. Prove that $R$ is not an affine variety.
+\end{problem}
+\begin{proof}
+Suppose for sake of contradiction that $R =\mathbb{V}(f_1,\dots,f_s)$ is an affine variety and let $f_i \in \mathbb{R}[x,y]$ be a vanishing function such that $f_i(0,t) = g(t) \in \mathbb{R}[t]$. In problem 8, we showed this implies $f(0,0)=0.$ but this contradicts the definition of $R$. The result follows.
+\end{proof}
+\begin{problem}{(10)}
+Let $\mathbb{Z}^n \subseteq \mathbb{C}^n$ consist of those points with integer coordinates. Prove that $\mathbb{Z}^n$ is not an affine variety. Hint: See Exercise 6 from subsection 1.
+\end{problem}
+\begin{proof}
+If $f_1,f_2,\dots,f_s \in \mathbb{C}[x_1, \dots , x_n]$ vanishes at every point of $\mathbb{Z}^n$, then $f_i$ is the zero polynomial. So there exists a non-integer valued complex number $(z_1,\dots,z_n) \in \mathbb{C}^n$ such that $f_i(z_1,\dots,z_n) = 0 \in \mathbb{C}^n$. This directly contradicts the definition of $\mathbb{Z}^n$ and the result follows.
+\end{proof}
+\begin{problem}{(12)}
+Find a Lagrange multipliers problem...
+\end{problem}
+\begin{solution}
+$$\max U(x,y,z) = x^2 + y^2 + z^2$$
+$$\text{subject to}$$
+$$g_1(x,y,z) = x+ y -3 = 0$$ $$g_2(x,y,z) = x+ z -5 = 0$$
+Then
+$$L = U(x,y) - \lambda g_1(x,y,z) -\mu g_2(x,y,z)) $$
+
+$$[x]: \partial_x U = \lambda \partial_x g(x,y,z) - \mu \partial_x g(x,y,z)$$
+$$[y]: \partial_y U = \lambda \partial_y g_1(x,y,z) - \mu \partial_y g_2(x,y,z)$$
+
+$$[z]: \partial_z U = \lambda \partial_z g_1(x,y,z) - \mu \partial_z g_2(x,y,z)$$
+\end{solution}
+
+\begin{problem}{(13)}
+Consider a robot arm $\dots$
+\end{problem}
+\begin{solution}{(a)}\newline
+\definecolor{rvwvcq}{rgb}{0.08235294117647059,0.396078431372549,0.7529411764705882}
+\definecolor{wrwrwr}{rgb}{0.3803921568627451,0.3803921568627451,0.3803921568627451}
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1cm,y=1cm]
+\begin{axis}[
+x=1cm,y=1cm,
+axis lines=middle,
+xmin=-6.420000000000003,
+xmax=7.520000000000003,
+ymin=-3.740000000000002,
+ymax=5.2,
+xtick={-6,-5,...,7},
+ytick={-3,-2,...,5},]
+\clip(-6.42,-3.74) rectangle (7.52,5.2);
+\draw [line width=2pt,color=wrwrwr] (0,0)-- (2.06,2.24);
+\draw [line width=2pt,color=wrwrwr] (2.06,2.24)-- (3.9,1.42);
+\draw [line width=2pt,color=wrwrwr] (3.9,1.42)-- (4.76,1.94);
+\begin{scriptsize}
+\draw [fill=wrwrwr] (0,0) circle (2pt);
+\draw[color=wrwrwr] (-0.36,0.45) node {$A$};
+\draw [fill=rvwvcq] (2.06,2.24) circle (2.5pt);
+\draw[color=rvwvcq] (2.1,2.91) node {(a,b)};
+\draw[color=wrwrwr] (1.38,0.89) node {$3$};
+\draw [fill=rvwvcq] (3.9,1.42) circle (2.5pt);
+\draw[color=rvwvcq] (3.96,0.91) node {(c,d)};
+\draw[color=wrwrwr] (3.26,2.31) node {$2$};
+\draw [fill=rvwvcq] (4.76,1.94) circle (2.5pt);
+\draw[color=rvwvcq] (5.36,2.63) node {(e, f)};
+\draw[color=wrwrwr] (4.5,1.47) node {$1$};
+\end{scriptsize}
+\end{axis}
+\end{tikzpicture}
+\end{solution}
+\begin{solution}{(b)}
+The state of the arm is given by 6 variables.
+\end{solution}
+\begin{solution}{(c)}
+Defined by the equations:
+$$a^2 + b^2 = 9$$  
+$$(c-d)^2 + (d - b)^2 = 4$$ 
+$$(e - c)^2 + (f - d)^2 = 1$$
+\end{solution}
+\begin{solution}{(d)}
+By intuition, we expect this to be a variety in $\mathbb{R}^3$ and thus 3-dimentional.
+\end{solution}
+
+% ---------------------------------------------------
+% Anything after the \end{document} will be ignored by the typesetting.
+% ----------------------------------------------------
+\end{document}
